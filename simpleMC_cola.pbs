@@ -10,7 +10,7 @@
 #Cola de ejecucion (-q cola)
 #PBS -q mpi
 #Recursos solicitados(nodos,cpus,mem,etc)
-#PBS -l nodes=1:ppn=28
+#PBS -l nodes=1:ppn=32
 
 #Cargar y/o definir entorno
 ./miniconda3/bin/python
