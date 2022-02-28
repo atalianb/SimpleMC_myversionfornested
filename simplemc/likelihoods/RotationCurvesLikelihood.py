@@ -43,5 +43,5 @@ class RotationCurvesLikelihood(BaseLikelihood):
 
 class RotationCurvesLike(RotationCurvesLikelihood):
     def __init__(self):
-        RotationCurvesLikelihood.__init__(self, "RotCurves", cdir+"/data/data_used_by_Tula/ESO0140040.dat",
-                                          cdir+"/data/ESO0140040-cov.txt")
+        RotationCurvesLikelihood.__init__(self, "RotCurves", cdir+"/data/Blok_McGaugh_&_Rubin_(2001)/U4115.dat",
+                                          cdir+"/data/U4115-cov.txt")

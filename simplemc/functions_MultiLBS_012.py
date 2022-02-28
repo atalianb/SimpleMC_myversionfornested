@@ -21,8 +21,8 @@ u2 = -0.4#2.7# 2nd trial value of unknown init. cond. gamma_210
 u3 = -1.9#4.9# 3th trial value of unknown init. cond. gamma_320
 u_012_V = np.array([u0,u1, u2,u3])
 #####
-data_path = "simplemc/data/data_used_by_Tula/"
-data = np.loadtxt(data_path+'ESO0140040.dat')
+data_path = "simplemc/data/Blok_McGaugh_&_Rubin_(2001)/"
+data = np.loadtxt(data_path+'U4115.dat')
 vecRp_data = np.array([row[1] for row in data])# galactocentric distance [kpc]
 def Integrate(func,x0,y0,x,h):
     # Finds value of y for a given x using step size h 
