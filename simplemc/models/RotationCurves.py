@@ -32,6 +32,10 @@ class RotationCurves():
         self.phi1 = phi1_par.value
         self.phi2 = phi2_par.value
 
+        data_path = "simplemc/data/data_used_by_Tula/"
+        data = np.loadtxt(data_path+'U11819.dat')
+        self.vecRp_data = np.array([row[1] for row in data])
+
 
     # my free params (parameters/priors see ParamDefs.py)
     def freeParameters(self):
@@ -54,6 +58,7 @@ class RotationCurves():
 
 
     def updateParams(self, pars):
+        x = self.vecRp_data
         for p in pars:
             if p.name == "Anfw":
                 self.Anfw = p.value
@@ -65,6 +70,18 @@ class RotationCurves():
                 self.phi1 = p.value
             elif p.name == "phi2":
                 self.phi2 = p.value
+        A = self.Anfw
+        rs = self.rs
+        phi0 = self.phi0
+        phi1 = self.phi1
+        phi2 = self.phi2
+        m_a = 10.**(A)
+        eps = 10.**(rs)
+        phi0 = 10.**(phi0)
+        phi1 = 10.**(phi1)
+        phi2 = 10.**(phi2)
+        Vc = Vc_(x,m_a,eps,phi0,phi1,phi2)
+        self.f = interpolate.interp1d(Vc[0],Vc[1],fill_value='extrapolate')
         return True
 
 
@@ -76,19 +93,20 @@ class RotationCurves():
 
 
     def rotation(self,x):
-        A = self.Anfw
-        rs = self.rs
-        phi0 = self.phi0
-        phi1 = self.phi1
-        phi2 = self.phi2
+        #A = self.Anfw
+        #rs = self.rs
+        #phi0 = self.phi0
+        #phi1 = self.phi1
+        #phi2 = self.phi2
 
-        m_a = 10.**(A)
-        eps0 = 10.**(rs)
-        phi0 = 10.**(phi0)
-        phi1 = 10.**(phi1)
-        phi2 = 10.**(phi2)
-        Vc2 = Vc_inter(x,m_a,eps0,phi0,phi1,phi2)
-        return np.sqrt(Vc2)
+        #m_a = 10.**(A)
+        #eps0 = 10.**(rs)
+        #phi0 = 10.**(phi0)
+        #phi1 = 10.**(phi1)
+        #phi2 = 10.**(phi2)
+        #Vc2 = Vc_inter(x,m_a,eps0,phi0,phi1,phi2)
+        Vc_new = self.f(x)
+        return np.sqrt(Vc_new)
 
     def prior_loglike(self):
         return 0

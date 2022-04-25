@@ -21,9 +21,9 @@ u2 = -0.4#2.7# 2nd trial value of unknown init. cond. gamma_210
 u3 = -1.9#4.9# 3th trial value of unknown init. cond. gamma_320
 u_012_V = np.array([u0,u1, u2,u3])
 #####
-data_path = "simplemc/data/Blok_McGaugh_&_Rubin_(2001)/"
-data = np.loadtxt(data_path+'U11557.dat')
-vecRp_data = np.array([row[1] for row in data])# galactocentric distance [kpc]
+#data_path = "simplemc/data/Blok_McGaugh_&_Rubin_(2001)/"
+#data = np.loadtxt(data_path+'U11557.dat')
+#vecRp_data = np.array([row[1] for row in data])# galactocentric distance [kpc]
 def Integrate(func,x0,y0,x,h):
     # Finds value of y for a given x using step size h 
     # and initial value y0 at x0.
@@ -120,11 +120,11 @@ def Vc_(r,m_a,eps,phi0,phi1,phi2):
     Vc2_r0 = Vc2_cir(X,eps,M_r0)#Vc^2[km/s]^2 theoretical
     X0_units = r_units(X,eps,m_a)#r[kpc] theoretical
     M_r0_units = M_r0*eps*1.34e-10/m_a
-    if X0_units[-1]<vecRp_data[-1]:
+    if X0_units[-1]<r[-1]:
         #array from last element of the r[kpc] theoretical to the last element of the data array,
         # with 80 elements. It can be replaced by np.arange(X0_units[-1],vecRp_data[-1],0.1) 
         #but you have to be careful in the next function with interpolate
-        r_array = np.linspace(X0_units[-1],vecRp_data[-1],80)
+        r_array = np.linspace(X0_units[-1],r[-1],80)
         Vc2_rmayor = G_kpc*M_r0_units[-1]/r_array#Computes Vc^2 with with the last result from M(r)
         Vc2_total = np.append(Vc2_r0,Vc2_rmayor)#creates an array of Vc^2 with Vc2_r0 and Vc2_rmayor
         r_total = np.append(X0_units,r_array)
