@@ -161,11 +161,11 @@ wq_par = Parameter("wq", -0.9, 0.05, (-1.0, -0.5), "w_q")
 #Anfw_par = Parameter("Anfw",  0.1, 0.01, (0.0, 5.5), "A_s")
 #rs_par =   Parameter("rs",  250., 10.0, (0.0, 350.0), "r_s")
 #Anfw->m_a,rs->eps0
-Anfw_par = Parameter("Anfw",  np.log10(3.31e-24), 0.01, (np.log10(1.0e-26), np.log10(1.0e-22)), "A_s")
-rs_par =   Parameter("rs",  np.log10(6.27e-4), 0.01, (np.log10(1.0e-6), np.log10(1.0e-2)), "r_s")
-phi0_par =   Parameter("phi0",  np.log10(1.0), 0.01, (np.log10(0.001), np.log10(1.5)), "phi0")
-phi1_par =   Parameter("phi1",  np.log10(1.0e-1), 0.01, (np.log10(0.00001), np.log10(1.5)), "phi1")
-phi2_par =   Parameter("phi2",  np.log10(2.22e-1), 0.01, (np.log10(0.00001), np.log10(1.5)), "phi2")
+Anfw_par = Parameter("Anfw",  np.log10(3.31e-24), 0.01, (np.log10(1.0e-26), np.log10(1.0e-20)), "A_s")
+rs_par =   Parameter("rs",  np.log10(6.28e-4), 0.01, (np.log10(1.0e-6), np.log10(1.0e-3)), "r_s")
+phi0_par =   Parameter("phi0",  np.log10(1.0), 0.01, (np.log10(0.001), np.log10(2.0)), "phi0")
+phi1_par =   Parameter("phi1",  np.log10(1.0e-1), 0.01, (np.log10(0.00001), np.log10(2.0)), "phi1")
+phi2_par =   Parameter("phi2",  np.log10(2.22e-1), 0.01, (np.log10(0.00001), np.log10(2.0)), "phi2")
 
 # Restrained DE [arXiv:2004.14863].
 weff_par = Parameter("weff", -1.0, 0.02, (-1., 0.), "w_{eff}")
